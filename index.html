@@ -7,128 +7,128 @@
 <title>Glimmerglass Stage Ops — Schedule Tracker</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;font-size:13px;background:#111;color:#e8e8e8;padding:16px}
+body{font-family:system-ui,-apple-system,sans-serif;font-size:13px;background:#0a0a0a;color:#e8e8e8;padding:16px}
 h1{font-size:16px;font-weight:700;margin-bottom:2px}
-.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;background:#1e1e1e;padding:10px 14px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;background:#1a1a1a;padding:10px 14px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.4)}
 .wnav{display:flex;align-items:center;gap:8px}
 .wnav button,.tbtn,.xbtn{border:1px solid #444;border-radius:6px;padding:5px 13px;background:#2a2a2a;font-size:12px;color:#e8e8e8;font-weight:600;cursor:pointer}
-.wnav button:hover,.tbtn:hover,.xbtn:hover{background:#333}
+.wnav button:hover,.tbtn:hover,.xbtn:hover{background:#3a3a3a}
 .tbtn.active{background:#e8e8e8;color:#111;border-color:#e8e8e8}
-.xbtn.export{background:#1a2a38;border-color:#2980b9;color:#5ba8d4}
-.xbtn.export:hover{background:#1f3447}
-.xbtn.import{background:#1a2e22;border-color:#27ae60;color:#4dc87a}
-.xbtn.import:hover{background:#1f3828}
+.xbtn.export{background:#1a2a3a;border-color:#2980b9;color:#5dade2}
+.xbtn.export:hover{background:#1e3040}
+.xbtn.import{background:#1a2e1a;border-color:#27ae60;color:#58d68d}
+.xbtn.import:hover{background:#1e3520}
 .wlbl{font-size:13px;font-weight:600;min-width:130px;text-align:center}
-.cliphint{font-size:11px;padding:4px 10px;background:#1a2e22;border:1px solid #27ae60;border-radius:6px;color:#4dc87a;font-weight:500}
+.cliphint{font-size:11px;padding:4px 10px;background:#1a2e1a;border:1px solid #27ae60;border-radius:6px;color:#58d68d;font-weight:500}
 .view-toggle{display:flex;gap:6px}
 .data-bar{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:11px;color:#666;flex-wrap:wrap}
 .save-status{padding:3px 8px;border-radius:5px;font-weight:500}
-.save-status.saved{background:#1a2e22;color:#4dc87a;border:1px solid #27ae60}
-.save-status.unsaved{background:#2e2210;color:#e0a030;border:1px solid #e67e22}
+.save-status.saved{background:#1a2e1a;color:#58d68d;border:1px solid #27ae60}
+.save-status.unsaved{background:#2e2010;color:#e59866;border:1px solid #e67e22}
 .sumbar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-.stat{background:#1e1e1e;border-radius:10px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.stat{background:#1a1a1a;border-radius:10px;padding:10px 14px;box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .stat .val{font-size:22px;font-weight:700;color:#e8e8e8}
-.stat .lbl{font-size:10px;color:#888;margin-top:2px}
-.stat.ot .val{color:#e05555}
-.stat.warn .val{color:#e0a030}
-.grid-wrap{overflow-x:auto;background:#1e1e1e;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.3);padding:4px}
+.stat .lbl{font-size:10px;color:#777;margin-top:2px}
+.stat.ot .val{color:#e74c3c}
+.stat.warn .val{color:#e59866}
+.grid-wrap{overflow-x:auto;background:#1a1a1a;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.3);padding:4px}
 table{border-collapse:collapse;width:100%}
-th{font-size:11px;color:#aaa;font-weight:600;padding:6px 4px;border-bottom:2px solid #333;text-align:center;background:#1a1a1a;white-space:nowrap}
+th{font-size:11px;color:#aaa;font-weight:600;padding:6px 4px;border-bottom:2px solid #333;text-align:center;background:#141414;white-space:nowrap}
 th.nth{text-align:left;min-width:120px;padding-left:8px}
 th.dth{min-width:80px}
-td{padding:3px 4px;border-bottom:1px solid #2a2a2a;vertical-align:top;background:#1e1e1e}
+td{padding:3px 4px;border-bottom:1px solid #222;vertical-align:top;background:#1a1a1a}
 td.ntd{vertical-align:middle;padding:6px 8px}
 .pname{font-size:12px;font-weight:700;color:#e8e8e8}
 .prole{font-size:10px;color:#888}
 .pshows{display:flex;flex-wrap:wrap;gap:2px;margin-top:3px;align-items:center}
 .ebtn{font-size:9px;padding:1px 5px;border:1px solid #444;border-radius:3px;background:#2a2a2a;color:#aaa;cursor:pointer}
-.ebtn:hover{background:#333}
+.ebtn:hover{background:#3a3a3a}
 td.dtd{cursor:pointer;text-align:center;padding:4px}
-td.dtd:hover{background:#252525}
-td.dtd.csrc{outline:2px solid #27ae60;outline-offset:-2px;background:#1a2e22}
+td.dtd:hover{background:#222}
+td.dtd.csrc{outline:2px solid #27ae60;outline-offset:-2px;background:#1a2e1a}
 td.dtd.cpst{outline:2px dashed #27ae60;outline-offset:-2px;background:#182820}
 .cb{font-size:10px;line-height:1.4;margin:1px 0}
 .ct{white-space:nowrap;font-weight:600;font-size:10px;color:#e8e8e8}
 .cm{display:flex;align-items:center;justify-content:center;gap:2px}
 .bdg{display:inline-block;font-size:9px;font-weight:700;padding:1px 4px;border-radius:3px;margin-right:1px}
-.tw{font-size:9px;color:#e05555;display:block;font-weight:600;margin-top:1px}
+.tw{font-size:9px;color:#e74c3c;display:block;font-weight:600;margin-top:1px}
 .empty{color:#444;font-size:12px}
 .cbtns{display:flex;justify-content:center;gap:3px;margin-top:3px}
-.cbtn{font-size:9px;padding:2px 5px;border-radius:3px;border:1px solid #444;background:#2a2a2a;cursor:pointer;color:#bbb;font-weight:500}
-.cbtn:hover{background:#333}
-.cbtn.pst{border-color:#27ae60;color:#4dc87a;background:#1a2e22}
-td.htd{text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#e8e8e8;padding:4px}
-td.htd.ot{color:#e05555}
-td.htd.warn{color:#e0a030}
-.ottag{display:block;font-size:9px;padding:1px 3px;border-radius:3px;background:#3a1a1a;color:#e05555;margin-top:1px;font-weight:600}
-.warntag{display:block;font-size:9px;padding:1px 3px;border-radius:3px;background:#2e2210;color:#e0a030;margin-top:1px;font-weight:600}
-.season-wrap{overflow-x:auto;background:#1e1e1e;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.3);padding:4px}
+.cbtn{font-size:9px;padding:2px 5px;border-radius:3px;border:1px solid #444;background:#2a2a2a;cursor:pointer;color:#ccc;font-weight:500}
+.cbtn:hover{background:#3a3a3a}
+.cbtn.pst{border-color:#27ae60;color:#58d68d;background:#1a2e1a}
+td.htd{text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#aaa;padding:4px}
+td.htd.ot{color:#e74c3c}
+td.htd.warn{color:#e59866}
+.ottag{display:block;font-size:9px;padding:1px 3px;border-radius:3px;background:#2e1010;color:#e74c3c;margin-top:1px;font-weight:600}
+.warntag{display:block;font-size:9px;padding:1px 3px;border-radius:3px;background:#2e2010;color:#e59866;margin-top:1px;font-weight:600}
+.season-wrap{overflow-x:auto;background:#1a1a1a;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.3);padding:4px}
 .season-wrap table th{min-width:68px}
 .season-wrap table th.nth{min-width:120px}
-td.wkcell{text-align:center;padding:5px 3px;vertical-align:middle;cursor:pointer;border-bottom:1px solid #2a2a2a}
+td.wkcell{text-align:center;padding:5px 3px;vertical-align:middle;cursor:pointer;border-bottom:1px solid #222}
 td.wkcell:hover{opacity:.85}
 td.wkcell.cur{outline:2px solid #aaa;outline-offset:-2px}
 .wc-hrs{font-size:12px;font-weight:700}
 .wc-tag{font-size:9px;padding:1px 3px;border-radius:3px;font-weight:600;display:inline-block;margin-top:1px}
-td.wktotal{text-align:center;vertical-align:middle;font-size:11px;font-weight:600;padding:4px;border-bottom:1px solid #2a2a2a;background:#1a1a1a;color:#aaa}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:1000;padding:16px}
-.panel{background:#1e1e1e;border-radius:14px;padding:22px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,.6);color:#e8e8e8;border:1px solid #333}
-.panel .ptitle{font-size:16px;font-weight:700;margin-bottom:3px;color:#e8e8e8}
+td.wktotal{text-align:center;vertical-align:middle;font-size:11px;font-weight:600;padding:4px;border-bottom:1px solid #222;background:#141414;color:#aaa}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;z-index:1000;padding:16px}
+.panel{background:#1a1a1a;border-radius:14px;padding:22px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,.6);color:#e8e8e8;border:1px solid #333}
+.panel .ptitle{font-size:16px;font-weight:700;margin-bottom:3px}
 .panel .prole2{font-size:12px;color:#888;margin-bottom:5px}
 .panel .pshows2{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px}
-.panel .pday{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:10px;align-items:center;padding:6px 10px;background:#252525;border-radius:8px;font-size:11px;color:#bbb;border:1px solid #333}
+.panel .pday{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:10px;align-items:center;padding:6px 10px;background:#222;border-radius:8px;font-size:11px;color:#aaa;border:1px solid #333}
 .panel .phint{font-size:11px;color:#777;margin-bottom:12px;line-height:1.6}
 .calls-tbl{width:100%;border-collapse:collapse;margin-bottom:8px}
 .calls-tbl th{font-size:11px;color:#777;font-weight:600;padding:0 3px 5px;text-align:left;border-bottom:1px solid #333}
 .calls-tbl td{padding:4px 3px;vertical-align:middle}
-input.ti{width:70px;font-size:13px;padding:5px 7px;border:1.5px solid #444;border-radius:7px;background:#2a2a2a;color:#e8e8e8;text-align:center;outline:none}
+input.ti{width:70px;font-size:13px;padding:5px 7px;border:1.5px solid #444;border-radius:7px;background:#111;color:#e8e8e8;text-align:center;outline:none}
 input.ti:focus{border-color:#888}
-input.ti.ok{border-color:#27ae60;background:#182820}
-input.ti.err{border-color:#e74c3c;background:#2e1a1a}
-select.ss{font-size:12px;padding:5px 6px;border:1.5px solid #444;border-radius:7px;background:#2a2a2a;color:#e8e8e8;width:68px;cursor:pointer}
+input.ti.ok{border-color:#27ae60;background:#0f1f0f}
+input.ti.err{border-color:#e74c3c;background:#1f0f0f}
+select.ss{font-size:12px;padding:5px 6px;border:1.5px solid #444;border-radius:7px;background:#111;color:#e8e8e8;width:68px;cursor:pointer}
 select.ss:focus{outline:none;border-color:#888}
 .hdisp{font-size:11px;color:#888;text-align:center;min-width:32px;font-weight:500}
 .rmbtn{background:#2a2a2a;border:1px solid #444;color:#888;cursor:pointer;font-size:15px;padding:2px 7px;line-height:1;border-radius:5px}
-.rmbtn:hover{background:#3a1a1a;color:#e05555;border-color:#e74c3c}
+.rmbtn:hover{background:#2e1010;color:#e74c3c;border-color:#e74c3c}
 .flags{font-size:12px;padding:9px 12px;border-radius:8px;margin:8px 0;font-weight:500}
-.flags.ot{background:#3a1a1a;color:#e05555;border:1px solid #c0392b}
-.flags.warn{background:#2e2210;color:#e0a030;border:1px solid #e67e22}
+.flags.ot{background:#2e1010;color:#e74c3c;border:1px solid #e74c3c}
+.flags.warn{background:#2e2010;color:#e59866;border:1px solid #e67e22}
 .seclbl{font-size:11px;font-weight:700;color:#777;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 6px}
 .ab{font-size:11px;padding:4px 10px;border-radius:7px;border:1.5px solid #444;background:#2a2a2a;cursor:pointer;color:#ccc;font-weight:600;white-space:nowrap;margin:0 4px 4px 0;display:inline-block}
-.ab:hover{background:#333}
+.ab:hover{background:#3a3a3a}
 .apbtns{margin-bottom:6px}
 .notbtns{margin-bottom:10px}
 .apgrid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:12px}
-.apitem{display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 7px;border-radius:7px;border:1.5px solid #333;cursor:pointer;user-select:none;background:#252525}
-.apitem:hover{background:#2a2a2a;border-color:#555}
-.apitem.on{border-color:#27ae60;background:#1a2e22}
+.apitem{display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 7px;border-radius:7px;border:1.5px solid #333;cursor:pointer;user-select:none;background:#111}
+.apitem:hover{background:#1e1e1e;border-color:#555}
+.apitem.on{border-color:#27ae60;background:#0f2010}
 .apitem.self{opacity:.3;pointer-events:none}
 .apitem input{margin:0;pointer-events:none}
 .panelacts{display:flex;gap:10px;margin-top:16px}
 .panelacts button{flex:1;padding:10px;border-radius:9px;font-size:13px;cursor:pointer;font-weight:700;border:2px solid transparent}
 .bsave{background:#e8e8e8;color:#111;border-color:#e8e8e8}
 .bsave:hover{background:#fff}
-.bclr{background:#3a1a1a;color:#e05555;border-color:#c0392b}
-.bclr:hover{background:#4a2020}
+.bclr{background:#2e1010;color:#e74c3c;border-color:#e74c3c}
+.bclr:hover{background:#3a1515}
 .bcan{background:#2a2a2a;color:#aaa;border-color:#444}
-.bcan:hover{background:#333}
+.bcan:hover{background:#3a3a3a}
 .asgn-popup{position:fixed;background:#1e1e1e;border:1.5px solid #444;border-radius:10px;padding:14px;z-index:2000;min-width:175px;box-shadow:0 6px 24px rgba(0,0,0,.5)}
 .asgn-popup .asgn-title{font-size:11px;font-weight:700;color:#888;margin-bottom:9px}
 .asgn-popup label{display:flex;align-items:center;gap:8px;padding:4px 3px;cursor:pointer;font-size:12px;border-radius:5px;color:#e8e8e8}
-.asgn-popup label:hover{background:#252525}
+.asgn-popup label:hover{background:#2a2a2a}
 .asgn-popup .adone{margin-top:10px;width:100%;padding:7px;border-radius:7px;border:2px solid #e8e8e8;background:#e8e8e8;color:#111;cursor:pointer;font-size:12px;font-weight:700}
 .asgn-popup .adone:hover{background:#fff}
-.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:3000;padding:16px}
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;z-index:3000;padding:16px}
 .confirm-box{background:#1e1e1e;border-radius:12px;padding:24px;max-width:380px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.5);border:1px solid #333;color:#e8e8e8}
-.confirm-box h3{font-size:15px;font-weight:700;margin-bottom:8px;color:#e8e8e8}
-.confirm-box p{font-size:13px;color:#999;margin-bottom:18px;line-height:1.5}
+.confirm-box h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.confirm-box p{font-size:13px;color:#aaa;margin-bottom:18px;line-height:1.5}
 .confirm-box .cbtns2{display:flex;gap:10px}
 .confirm-box .cbtns2 button{flex:1;padding:9px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600;border:2px solid transparent}
 .drive-status{display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 10px;border-radius:6px;font-weight:500}
-.drive-status.connected{background:#1a2e22;color:#4dc87a;border:1px solid #27ae60}
-.drive-status.disconnected{background:#2e2210;color:#e0a030;border:1px solid #e67e22}
-.drive-status.syncing{background:#1a2a38;color:#5ba8d4;border:1px solid #2980b9}
-.drive-status.error{background:#3a1a1a;color:#e05555;border:1px solid #e74c3c}
+.drive-status.connected{background:#0f2010;color:#58d68d;border:1px solid #27ae60}
+.drive-status.disconnected{background:#2e2010;color:#e59866;border:1px solid #e67e22}
+.drive-status.syncing{background:#0f1a2e;color:#5dade2;border:1px solid #2980b9}
+.drive-status.error{background:#2e1010;color:#e74c3c;border:1px solid #e74c3c}
 .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
 .dot.green{background:#27ae60}
 .dot.amber{background:#e67e22}
@@ -136,7 +136,7 @@ select.ss:focus{outline:none;border-color:#888}
 .dot.red{background:#e74c3c}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .connect-btn{border:2px solid #2980b9;border-radius:7px;padding:6px 16px;background:#2980b9;color:#fff;font-size:12px;font-weight:700;cursor:pointer}
-.connect-btn:hover{background:#216a92}
+.connect-btn:hover{background:#1f6fa0}
 </style>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://apis.google.com/js/api.js"></script>
@@ -153,14 +153,14 @@ select.ss:focus{outline:none;border-color:#888}
     <button class="tbtn" id="btn-season-view">Season</button>
   </div>
   <div class="wnav" id="week-nav">
-    <button id="btn-prev">‹</button>
+    <button id="btn-prev">&#8249;</button>
     <span class="wlbl" id="wlbl"></span>
-    <button id="btn-next">›</button>
+    <button id="btn-next">&#8250;</button>
   </div>
   <button class="connect-btn" id="btn-connect" style="display:none">Connect Google Drive</button>
   <span class="drive-status disconnected" id="drive-status"><span class="dot amber"></span> not connected</span>
-  <button class="xbtn export" id="btn-export" title="backup as JSON file">↓ Backup</button>
-  <button class="xbtn import" id="btn-restore" title="restore from a backup JSON file">↑ Restore</button>
+  <button class="xbtn export" id="btn-export" title="backup as JSON file">&#8595; Backup</button>
+  <button class="xbtn import" id="btn-restore" title="restore from a backup JSON file">&#8593; Restore</button>
   <input type="file" id="import-file" accept=".json" style="display:none">
   <span class="cliphint" id="cliphint" style="display:none"></span>
 </div>
@@ -218,10 +218,10 @@ var PERF={
   ROB:["2026-08-02","2026-08-04","2026-08-07"]
 };
 var SC={
-  OKL:{bg:"#3a1a1a",fg:"#ff7070"},BUT:{bg:"#2e2010",fg:"#d4a030"},
-  COS:{bg:"#1a2e1a",fg:"#50c050"},FEL:{bg:"#1a2540",fg:"#5090e0"},
-  ROB:{bg:"#251a40",fg:"#9070d0"},PAV:{bg:"#1a2e2e",fg:"#30b0a0"},
-  NC:{bg:"#2a2a2a",fg:"#888"},OTHER:{bg:"#2a2218",fg:"#a08060"}
+  OKL:{bg:"#3d1a1a",fg:"#f1948a"},BUT:{bg:"#3d2e10",fg:"#f0b27a"},
+  COS:{bg:"#1a3020",fg:"#82e0aa"},FEL:{bg:"#1a2840",fg:"#7fb3f5"},
+  ROB:{bg:"#2a1f40",fg:"#c39bd3"},PAV:{bg:"#0d2e2e",fg:"#76d7c4"},
+  NC:{bg:"#2a2a2a",fg:"#aaa"},OTHER:{bg:"#2e2510",fg:"#c8a96e"}
 };
 var CSHOWS=["OKL","BUT","COS","FEL","ROB","PAV","NC","OTHER"];
 var ASHOWS=["OKL","BUT","COS","FEL","ROB","PAV","OTHER"];
@@ -235,10 +235,7 @@ var wkOff=0,currentView='week';
 var sched={},clip=null;
 var ES={pi:null,di:null,calls:[],at:[]};
 
-// =====================================================
-// GOOGLE DRIVE SYNC
-// =====================================================
-var GOOGLE_CLIENT_ID = '169959092831-kchgrt1q1c3dstn92g8d7opj2i6abo4j.apps.googleusercontent.com';
+var GOOGLE_CLIENT_ID = '169959092831-rr3241f1dug5pmjeda81843c8iqu936v.apps.googleusercontent.com';
 var DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.file';
 var DRIVE_FILENAME = 'glimmerglass-stage-ops-data.json';
 var driveFileId = null;
@@ -266,18 +263,12 @@ function fmtTS(d){
 }
 
 function initGoogleAuth(){
-  if(typeof google === 'undefined' || !google.accounts){
-    setTimeout(initGoogleAuth, 300);
-    return;
-  }
+  if(typeof google === 'undefined' || !google.accounts){setTimeout(initGoogleAuth,300);return;}
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: GOOGLE_CLIENT_ID,
     scope: DRIVE_SCOPE,
     callback: function(resp){
-      if(resp.error){
-        setDriveStatus('error','connect failed — try again');
-        return;
-      }
+      if(resp.error){setDriveStatus('error','connect failed — try again');return;}
       accessToken = resp.access_token;
       driveConnected = true;
       document.getElementById('btn-connect').style.display='none';
@@ -287,180 +278,116 @@ function initGoogleAuth(){
     }
   });
   document.getElementById('btn-connect').style.display='inline-block';
-  document.getElementById('btn-connect').addEventListener('click', function(){
+  document.getElementById('btn-connect').addEventListener('click',function(){
     tokenClient.requestAccessToken({prompt: accessToken ? '' : 'consent'});
   });
   initGapiClient();
 }
 
 function initGapiClient(){
-  if(typeof gapi === 'undefined'){
-    setTimeout(initGapiClient, 300);
-    return;
-  }
-  gapi.load('client', function(){
-    gapi.client.init({}).then(function(){
-      gapi.client.load('drive', 'v3');
-    });
-  });
+  if(typeof gapi === 'undefined'){setTimeout(initGapiClient,300);return;}
+  gapi.load('client',function(){gapi.client.init({}).then(function(){gapi.client.load('drive','v3');});});
 }
 
 function findOrCreateDriveFile(){
   gapi.client.request({
-    path: 'https://www.googleapis.com/drive/v3/files',
-    params: {
-      q: "name='" + DRIVE_FILENAME + "' and trashed=false",
-      spaces: 'drive',
-      fields: 'files(id, name, modifiedTime)'
-    }
+    path:'https://www.googleapis.com/drive/v3/files',
+    params:{q:"name='"+DRIVE_FILENAME+"' and trashed=false",spaces:'drive',fields:'files(id,name,modifiedTime)'}
   }).then(function(resp){
-    var files = resp.result.files;
-    if(files && files.length > 0){
-      driveFileId = files[0].id;
-      lastKnownModTime = files[0].modifiedTime;
-      loadFromDrive(true);
-    } else {
-      createDriveFile();
-    }
-  }, function(err){
-    setDriveStatus('error','drive error — retry connect');
-  });
+    var files=resp.result.files;
+    if(files&&files.length>0){driveFileId=files[0].id;lastKnownModTime=files[0].modifiedTime;loadFromDrive(true);}
+    else createDriveFile();
+  },function(err){setDriveStatus('error','drive error — retry connect');});
 }
 
 function createDriveFile(){
-  var metadata = { name: DRIVE_FILENAME, mimeType: 'application/json' };
-  var initialData = buildSyncPayload();
-  var boundary = '-------glimmerglass';
-  var body =
-    '--' + boundary + '\r\n' +
-    'Content-Type: application/json; charset=UTF-8\r\n\r\n' +
-    JSON.stringify(metadata) + '\r\n' +
-    '--' + boundary + '\r\n' +
-    'Content-Type: application/json\r\n\r\n' +
-    JSON.stringify(initialData) + '\r\n' +
-    '--' + boundary + '--';
-
+  var metadata={name:DRIVE_FILENAME,mimeType:'application/json'};
+  var initialData=buildSyncPayload();
+  var boundary='-------glimmerglass';
+  var body='--'+boundary+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+JSON.stringify(metadata)+'\r\n'
+    +'--'+boundary+'\r\nContent-Type: application/json\r\n\r\n'+JSON.stringify(initialData)+'\r\n'+'--'+boundary+'--';
   gapi.client.request({
-    path: 'https://www.googleapis.com/upload/drive/v3/files',
-    method: 'POST',
-    params: { uploadType: 'multipart' },
-    headers: { 'Content-Type': 'multipart/related; boundary="' + boundary + '"' },
-    body: body
+    path:'https://www.googleapis.com/upload/drive/v3/files',method:'POST',
+    params:{uploadType:'multipart'},
+    headers:{'Content-Type':'multipart/related; boundary="'+boundary+'"'},body:body
   }).then(function(resp){
-    driveFileId = resp.result.id;
-    setDriveStatus('connected', 'synced just now');
-    document.getElementById('last-saved').textContent = 'connected to Google Drive';
+    driveFileId=resp.result.id;
+    setDriveStatus('connected','synced just now');
+    document.getElementById('last-saved').textContent='connected to Google Drive';
     startPolling();
-  }, function(err){
-    setDriveStatus('error', 'could not create sync file');
-  });
+  },function(err){setDriveStatus('error','could not create sync file');});
 }
 
 function buildSyncPayload(){
-  return {
-    version: 1,
-    updated: new Date().toISOString(),
-    sched: sched,
-    crew: CREW.map(function(c){ return {name:c.name, shows:c.shows}; })
-  };
+  return{version:1,updated:new Date().toISOString(),sched:sched,crew:CREW.map(function(c){return{name:c.name,shows:c.shows};})};
 }
 
 function loadFromDrive(isInitial){
   gapi.client.request({
-    path: 'https://www.googleapis.com/drive/v3/files/' + driveFileId,
-    params: { alt: 'media' }
+    path:'https://www.googleapis.com/drive/v3/files/'+driveFileId,params:{alt:'media'}
   }).then(function(resp){
-    var data = resp.result;
-    if(data && data.sched){
-      sched = data.sched;
-      if(data.crew){
-        for(var i=0;i<data.crew.length && i<CREW.length;i++){
-          if(data.crew[i].name===CREW[i].name) CREW[i].shows = data.crew[i].shows;
-        }
-      }
+    var data=resp.result;
+    if(data&&data.sched){
+      sched=data.sched;
+      if(data.crew){for(var i=0;i<data.crew.length&&i<CREW.length;i++){if(data.crew[i].name===CREW[i].name)CREW[i].shows=data.crew[i].shows;}}
     }
-    setDriveStatus('connected', 'synced just now');
-    var now = new Date();
-    document.getElementById('last-saved').textContent = 'last synced: ' + fmtTS(now);
-    if(currentView==='week') renderWeek(); else renderSeason();
-    if(isInitial) startPolling();
-  }, function(err){
-    setDriveStatus('error', 'sync read failed');
-  });
+    setDriveStatus('connected','synced just now');
+    document.getElementById('last-saved').textContent='last synced: '+fmtTS(new Date());
+    if(currentView==='week')renderWeek();else renderSeason();
+    if(isInitial)startPolling();
+  },function(err){setDriveStatus('error','sync read failed');});
 }
 
 function saveToDrive(){
-  if(!driveConnected || !driveFileId){ return; }
-  isSavingToDrive = true;
-  setDriveStatus('syncing', 'saving...');
-  var payload = buildSyncPayload();
+  if(!driveConnected||!driveFileId)return;
+  isSavingToDrive=true;
+  setDriveStatus('syncing','saving...');
   gapi.client.request({
-    path: 'https://www.googleapis.com/upload/drive/v3/files/' + driveFileId,
-    method: 'PATCH',
-    params: { uploadType: 'media' },
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    path:'https://www.googleapis.com/upload/drive/v3/files/'+driveFileId,method:'PATCH',
+    params:{uploadType:'media'},headers:{'Content-Type':'application/json'},body:JSON.stringify(buildSyncPayload())
   }).then(function(resp){
-    isSavingToDrive = false;
-    localChangePending = false;
-    setDriveStatus('connected', 'synced just now');
-    document.getElementById('last-saved').textContent = 'last synced: ' + fmtTS(new Date());
-    gapi.client.request({
-      path: 'https://www.googleapis.com/drive/v3/files/' + driveFileId,
-      params: { fields: 'modifiedTime' }
-    }).then(function(r){ lastKnownModTime = r.result.modifiedTime; });
-  }, function(err){
-    isSavingToDrive = false;
-    setDriveStatus('error', 'save failed — will retry');
-  });
+    isSavingToDrive=false;localChangePending=false;
+    setDriveStatus('connected','synced just now');
+    document.getElementById('last-saved').textContent='last synced: '+fmtTS(new Date());
+    gapi.client.request({path:'https://www.googleapis.com/drive/v3/files/'+driveFileId,params:{fields:'modifiedTime'}})
+      .then(function(r){lastKnownModTime=r.result.modifiedTime;});
+  },function(err){isSavingToDrive=false;setDriveStatus('error','save failed — will retry');});
 }
 
 function saveData(){
-  if(driveConnected && driveFileId){
-    saveToDrive();
-  } else {
-    setDriveStatus('disconnected', 'not connected — click Connect to sync');
-  }
+  if(driveConnected&&driveFileId)saveToDrive();
+  else setDriveStatus('disconnected','not connected — click Connect to sync');
 }
 
 function startPolling(){
-  if(pollTimer) clearInterval(pollTimer);
-  pollTimer = setInterval(checkForRemoteChanges, POLL_INTERVAL_MS);
+  if(pollTimer)clearInterval(pollTimer);
+  pollTimer=setInterval(checkForRemoteChanges,POLL_INTERVAL_MS);
 }
 
 function checkForRemoteChanges(){
-  if(!driveConnected || !driveFileId || isSavingToDrive) return;
-  gapi.client.request({
-    path: 'https://www.googleapis.com/drive/v3/files/' + driveFileId,
-    params: { fields: 'modifiedTime' }
-  }).then(function(resp){
-    var remoteModTime = resp.result.modifiedTime;
-    if(lastKnownModTime && remoteModTime !== lastKnownModTime){
-      lastKnownModTime = remoteModTime;
-      loadFromDrive(false);
-    }
-  }, function(err){ });
+  if(!driveConnected||!driveFileId||isSavingToDrive)return;
+  gapi.client.request({path:'https://www.googleapis.com/drive/v3/files/'+driveFileId,params:{fields:'modifiedTime'}})
+    .then(function(resp){
+      var remoteModTime=resp.result.modifiedTime;
+      if(lastKnownModTime&&remoteModTime!==lastKnownModTime){lastKnownModTime=remoteModTime;loadFromDrive(false);}
+    },function(err){});
 }
 
 function exportData(){
-  var data = buildSyncPayload();
-  var json=JSON.stringify(data,null,2);
+  var json=JSON.stringify(buildSyncPayload(),null,2);
   var blob=new Blob([json],{type:'application/json'});
   var url=URL.createObjectURL(blob);
   var a=document.createElement('a');
   var ts=new Date();
   a.download='gg-stage-ops-backup-'+ts.getFullYear()+'-'+(ts.getMonth()+1)+'-'+ts.getDate()+'.json';
-  a.href=url;a.click();
-  URL.revokeObjectURL(url);
+  a.href=url;a.click();URL.revokeObjectURL(url);
 }
 
 function showConfirm(title,msg,onYes){
   var box=document.getElementById('confirm-box');
-  box.innerHTML='<h3>'+title+'</h3><p>'+msg+'</p>'
-    +'<div class="cbtns2">'
+  box.innerHTML='<h3>'+title+'</h3><p>'+msg+'</p><div class="cbtns2">'
     +'<button id="conf-yes" style="background:#c0392b;color:#fff;border-color:#c0392b">Yes, replace data</button>'
-    +'<button id="conf-no" style="background:#2a2a2a;color:#ccc;border-color:#444">Cancel</button>'
-    +'</div>';
+    +'<button id="conf-no" style="background:#2a2a2a;color:#ccc;border-color:#444">Cancel</button></div>';
   document.getElementById('confirm-overlay').style.display='flex';
   document.getElementById('conf-yes').onclick=function(){document.getElementById('confirm-overlay').style.display='none';onYes();};
   document.getElementById('conf-no').onclick=function(){document.getElementById('confirm-overlay').style.display='none';};
@@ -496,20 +423,12 @@ function cH(c){
   return Math.round((e-s)/60*100)/100;
 }
 function wkStart(off){var b=new Date(BASE_DATE);b.setDate(b.getDate()+off*7);return b;}
-function wkDates(off){
-  var s=wkStart(off),r=[];
-  for(var i=0;i<7;i++){var d=new Date(s);d.setDate(d.getDate()+i);r.push(d);}
-  return r;
-}
+function wkDates(off){var s=wkStart(off),r=[];for(var i=0;i<7;i++){var d=new Date(s);d.setDate(d.getDate()+i);r.push(d);}return r;}
 function fD(d){return(d.getMonth()+1)+'/'+(d.getDate());}
 function dS(d){return d.getFullYear()+'-'+(d.getMonth()<9?'0':'')+(d.getMonth()+1)+'-'+(d.getDate()<10?'0':'')+d.getDate();}
 function dk(wk,pi,di){return wk+'_'+pi+'_'+di;}
 function gC(wk,pi,di){return sched[dk(wk,pi,di)]||[];}
-function pH(wk,pi){
-  var t=0;
-  for(var di=0;di<7;di++){var cc=gC(wk,pi,di);for(var j=0;j<cc.length;j++)t+=cH(cc[j]);}
-  return t;
-}
+function pH(wk,pi){var t=0;for(var di=0;di<7;di++){var cc=gC(wk,pi,di);for(var j=0;j<cc.length;j++)t+=cH(cc[j]);}return t;}
 function ckT(wk,pi,di){
   if(!di)return null;
   var p=gC(wk,pi,di-1),c=gC(wk,pi,di);
@@ -523,7 +442,7 @@ function ckT(wk,pi,di){
 
 function renderWeek(){
   var dates=wkDates(wkOff);
-  document.getElementById('wlbl').textContent='Wk '+(wkOff+1)+' · '+fD(dates[0])+' – '+fD(dates[6]);
+  document.getElementById('wlbl').textContent='Wk '+(wkOff+1)+' \u00b7 '+fD(dates[0])+' \u2013 '+fD(dates[6]);
   var otC=0,wC=0,tC=0,tot=0;
   for(var i=0;i<CREW.length;i++){
     var wh=pH(wkOff,i);tot+=wh;
@@ -534,7 +453,7 @@ function renderWeek(){
   document.getElementById('sumbar').innerHTML=
     '<div class="stat"><div class="val">'+tot+'h</div><div class="lbl">crew total this week</div></div>'+
     '<div class="stat'+(otC?' ot':'')+'"><div class="val">'+otC+'</div><div class="lbl">in overtime</div></div>'+
-    '<div class="stat'+(wC?' warn':'')+'"><div class="val">'+wC+'</div><div class="lbl">OT risk (36–40h)</div></div>'+
+    '<div class="stat'+(wC?' warn':'')+'"><div class="val">'+wC+'</div><div class="lbl">OT risk (36\u201340h)</div></div>'+
     '<div class="stat'+(tC?' ot':'')+'"><div class="val">'+tC+'</div><div class="lbl">turnaround flags</div></div>';
 
   var th='<tr><th class="nth">crew</th>';
@@ -554,7 +473,7 @@ function renderWeek(){
     var ot=wh>=OTH?'<span class="ottag">OT</span>':wh>=OTW?'<span class="warntag">~OT</span>':'';
     tb+='<tr><td class="ntd"><div class="pname">'+p.name+'</div><div class="prole">'+p.role+'</div>'
       +'<div class="pshows">'+p.shows.map(function(s){return bdg(s);}).join('')
-      +'<button class="ebtn" data-pi="'+pi+'">✎</button></div></td>';
+      +'<button class="ebtn" data-pi="'+pi+'">\u270e</button></div></td>';
     for(var di=0;di<7;di++){
       var calls=gC(wkOff,pi,di),turn=ckT(wkOff,pi,di);
       var isSrc=clip&&clip.wk===wkOff&&clip.pi===pi&&clip.di===di;
@@ -564,14 +483,14 @@ function renderWeek(){
       if(calls.length){
         for(var ci=0;ci<calls.length;ci++){
           var c=calls[ci],h=cH(c);
-          inn+='<div class="cb"><div class="ct">'+f12(c.in)+'–'+f12(c.out)+'</div>'
-            +'<div class="cm">'+(h>0?'<span style="font-size:9px;color:#777">'+h.toFixed(1)+'h</span>':'')+bdg(c.show||'NC','9px')+'</div></div>';
+          inn+='<div class="cb"><div class="ct">'+f12(c.in)+'\u2013'+f12(c.out)+'</div>'
+            +'<div class="cm">'+(h>0?'<span style="font-size:9px;color:#666">'+h.toFixed(1)+'h</span>':'')+bdg(c.show||'NC','9px')+'</div></div>';
         }
-        if(turn!==null)inn+='<span class="tw">⚠ '+turn+'h turn</span>';
+        if(turn!==null)inn+='<span class="tw">\u26a0 '+turn+'h turn</span>';
         inn+='<div class="cbtns"><button class="cbtn cpb" data-pi="'+pi+'" data-di="'+di+'">copy</button>'
           +(isPst?'<button class="cbtn pst ppb" data-pi="'+pi+'" data-di="'+di+'">paste</button>':'')+'</div>';
       }else{
-        inn=isPst?'<button class="cbtn pst ppb" data-pi="'+pi+'" data-di="'+di+'">paste</button>':'<span class="empty">—</span>';
+        inn=isPst?'<button class="cbtn pst ppb" data-pi="'+pi+'" data-di="'+di+'">paste</button>':'<span class="empty">\u2014</span>';
       }
       tb+='<td class="'+tc+'" data-pi="'+pi+'" data-di="'+di+'">'+inn+'</td>';
     }
@@ -583,7 +502,7 @@ function renderWeek(){
   var ch=document.getElementById('cliphint');
   if(clip&&clip.wk===wkOff){
     ch.style.display='inline';
-    ch.textContent='copied '+CREW[clip.pi].name+' '+DAYS[clip.di]+' — click cell to paste · esc to cancel';
+    ch.textContent='copied '+CREW[clip.pi].name+' '+DAYS[clip.di]+' \u2014 click cell to paste \u00b7 esc to cancel';
   }else ch.style.display='none';
 }
 
@@ -626,18 +545,18 @@ function onCell(e){
 }
 
 function renderSeason(){
-  document.getElementById('sumbar').innerHTML='<div class="stat" style="grid-column:1/-1"><div class="val" style="font-size:15px">Season Overview — Jun 8 through Aug 23, 2026</div><div class="lbl">click any cell to jump to that week · red dot = performance week</div></div>';
+  document.getElementById('sumbar').innerHTML='<div class="stat" style="grid-column:1/-1"><div class="val" style="font-size:15px">Season Overview \u2014 Jun 8 through Aug 23, 2026</div><div class="lbl">click any cell to jump to that week \u00b7 red dot = performance week</div></div>';
   var th='<tr><th class="nth">crew</th>';
   for(var w=0;w<SEASON_WEEKS;w++){
     var wd=wkDates(w),isPerf=false;
     for(var di=0;di<7;di++){if(son(dS(wd[di])).length){isPerf=true;break;}}
-    th+='<th style="min-width:68px;'+(w===wkOff?'background:#1a2540;':'')+'">'
+    th+='<th style="min-width:68px;'+(w===wkOff?'background:#1a2030;':'')+'">'
       +'<div style="font-weight:700">Wk '+(w+1)+'</div>'
       +'<div style="font-size:9px;opacity:.6">'+fD(wd[0])+'</div>'
-      +(isPerf?'<div style="width:7px;height:7px;border-radius:50%;background:#e05555;margin:2px auto 0"></div>':'<div style="height:9px"></div>')
+      +(isPerf?'<div style="width:7px;height:7px;border-radius:50%;background:#e74c3c;margin:2px auto 0"></div>':'<div style="height:9px"></div>')
       +'</th>';
   }
-  th+='<th style="min-width:52px;background:#1a1a1a">season</th></tr>';
+  th+='<th style="min-width:52px;background:#141414">season</th></tr>';
   document.getElementById('s-thead').innerHTML=th;
 
   var tb='';
@@ -649,28 +568,26 @@ function renderSeason(){
     for(var w=0;w<SEASON_WEEKS;w++){
       var wh=Math.round(pH(w,pi)*100)/100;
       seasonTotal+=wh;
-      var bg='#1a1a1a',fg2='#444',tag='';
-      if(wh>=OTH){bg='#3a1a1a';fg2='#e05555';tag='<span class="wc-tag" style="background:#c0392b;color:#fff">OT</span>';}
-      else if(wh>=OTW){bg='#2e2210';fg2='#e0a030';tag='<span class="wc-tag" style="background:#2e2210;color:#e0a030;border:1px solid #e67e22">~OT</span>';}
-      else if(wh>0){bg='#1a2e22';fg2='#4dc87a';}
+      var bg='#111',fg2='#444',tag='';
+      if(wh>=OTH){bg='#2e1010';fg2='#e74c3c';tag='<span class="wc-tag" style="background:#e74c3c;color:#fff">OT</span>';}
+      else if(wh>=OTW){bg='#2e2010';fg2='#e59866';tag='<span class="wc-tag" style="background:#2e2010;color:#e59866;border:1px solid #e67e22">~OT</span>';}
+      else if(wh>0){bg='#0f2010';fg2='#58d68d';}
       tb+='<td class="wkcell'+(w===wkOff?' cur':'')+'" style="background:'+bg+';color:'+fg2+'" data-w="'+w+'">'
-        +'<div class="wc-hrs">'+(wh>0?wh.toFixed(1)+'h':'—')+'</div>'+tag+'</td>';
+        +'<div class="wc-hrs">'+(wh>0?wh.toFixed(1)+'h':'\u2014')+'</div>'+tag+'</td>';
     }
     seasonTotal=Math.round(seasonTotal*10)/10;
     tb+='<td class="wktotal">'+seasonTotal.toFixed(0)+'h</td></tr>';
   }
-
-  tb+='<tr style="background:#1a1a1a"><td class="ntd" style="font-size:11px;font-weight:700;color:#777;padding:6px 8px">CREW TOTAL</td>';
+  tb+='<tr style="background:#141414"><td class="ntd" style="font-size:11px;font-weight:700;color:#888;padding:6px 8px">CREW TOTAL</td>';
   var grand=0;
   for(var w=0;w<SEASON_WEEKS;w++){
     var wt=0;for(var pi=0;pi<CREW.length;pi++)wt+=pH(w,pi);
     wt=Math.round(wt*10)/10;grand+=wt;
-    tb+='<td class="wktotal">'+(wt>0?wt.toFixed(0)+'h':'—')+'</td>';
+    tb+='<td class="wktotal">'+(wt>0?wt.toFixed(0)+'h':'\u2014')+'</td>';
   }
   grand=Math.round(grand*10)/10;
   tb+='<td class="wktotal" style="font-weight:700">'+grand.toFixed(0)+'h</td></tr>';
   document.getElementById('s-tbody').innerHTML=tb;
-
   document.querySelectorAll('td.wkcell').forEach(function(td){
     td.addEventListener('click',function(){wkOff=parseInt(this.dataset.w);switchView('week');});
   });
@@ -688,25 +605,18 @@ function switchView(v){
 
 function openAsgn(pi,btn){
   var a=document.getElementById('asgn-popup');
-  var h='<div class="asgn-title">'+CREW[pi].name+' — assignments</div>';
+  var h='<div class="asgn-title">'+CREW[pi].name+' \u2014 assignments</div>';
   ASHOWS.forEach(function(s){
     h+='<label><input type="checkbox" data-pi="'+pi+'" data-s="'+s+'" '+(CREW[pi].shows.indexOf(s)>=0?'checked':'')+'>'+bdg(s)+'</label>';
   });
   h+='<button class="adone" id="adone">done</button>';
   a.innerHTML=h;
-  a.style.visibility='hidden';
-  a.style.display='block';
-  a.style.top='-9999px';
-  a.style.left='0px';
-  var r=btn.getBoundingClientRect();
-  var popH=a.offsetHeight;
-  var popW=a.offsetWidth;
+  a.style.visibility='hidden';a.style.display='block';a.style.top='-9999px';a.style.left='0px';
+  var r=btn.getBoundingClientRect(),popH=a.offsetHeight,popW=a.offsetWidth;
   var spaceBelow=window.innerHeight-r.bottom;
-  var top=spaceBelow>=popH+8 ? r.bottom+4 : Math.max(4,r.top-popH-4);
+  var top=spaceBelow>=popH+8?r.bottom+4:Math.max(4,r.top-popH-4);
   var left=Math.min(r.left,window.innerWidth-popW-8);
-  a.style.top=top+'px';
-  a.style.left=left+'px';
-  a.style.visibility='visible';
+  a.style.top=top+'px';a.style.left=left+'px';a.style.visibility='visible';
   a.querySelectorAll('input[type=checkbox]').forEach(function(cb){
     cb.addEventListener('change',function(){
       var p2=parseInt(this.dataset.pi),sh=this.dataset.s;
@@ -715,9 +625,7 @@ function openAsgn(pi,btn){
       saveData();renderWeek();
     });
   });
-  document.getElementById('adone').addEventListener('click',function(){
-    document.getElementById('asgn-popup').style.display='none';
-  });
+  document.getElementById('adone').addEventListener('click',function(){document.getElementById('asgn-popup').style.display='none';});
 }
 
 function openPanel(pi,di){
@@ -737,15 +645,15 @@ function buildPanel(){
   var ssB=ssList.map(function(s){return '<button class="ab" style="border-color:'+sfg(s)+';background:'+sbg(s)+';color:'+sfg(s)+'" data-ss="'+s+'">'+s+' crew</button>';}).join('');
   var noB=NSHOWS.map(function(s){
     var isP=st.indexOf(s)>=0;
-    return '<button class="ab" style="border-color:'+sfg(s)+';background:'+sbg(s)+';color:'+sfg(s)+';'+(isP?'outline:2px solid '+sfg(s)+';outline-offset:1px;font-weight:800;':'')+'" data-no="'+s+'">not on '+s+(isP?' ★':'')+'</button>';
+    return '<button class="ab" style="border-color:'+sfg(s)+';background:'+sbg(s)+';color:'+sfg(s)+';'+(isP?'outline:2px solid '+sfg(s)+';outline-offset:1px;font-weight:800;':'')+'" data-no="'+s+'">not on '+s+(isP?' \u2605':'')+'</button>';
   }).join('');
 
   pn.innerHTML=
-    '<div class="ptitle">'+p.name+' — '+DAYS[ES.di]+' '+fD(dates[ES.di])+' <span style="font-size:12px;color:#666;font-weight:400">(Wk '+(wkOff+1)+')</span></div>'
+    '<div class="ptitle">'+p.name+' \u2014 '+DAYS[ES.di]+' '+fD(dates[ES.di])+' <span style="font-size:12px;color:#666;font-weight:400">(Wk '+(wkOff+1)+')</span></div>'
     +'<div class="prole2">'+p.role+'</div>'
     +'<div class="pshows2">'+(p.shows.length?p.shows.map(function(s){return bdg(s);}).join(''):'<span style="font-size:11px;color:#555">no assignments</span>')+'</div>'
     +sdH
-    +'<div class="phint">Type <b>9am</b>, <b>1pm</b>, <b>2am</b>, <b>14:00</b> — always include <b>am/pm</b> for hours 1–7 to avoid confusion with afternoon times. Tab through fields; tab past last out adds a call (max 3)</div>'
+    +'<div class="phint">Type <b>9am</b>, <b>1pm</b>, <b>2am</b>, <b>14:00</b> \u2014 always include <b>am/pm</b> for hours 1\u20137 to avoid confusion with afternoon times. Tab through fields; tab past last out adds a call (max 3)</div>'
     +'<table class="calls-tbl"><thead><tr><th>#</th><th>in</th><th></th><th>out</th><th>show</th><th>hrs</th><th></th></tr></thead><tbody id="ctb"></tbody></table>'
     +'<div id="fa"></div>'
     +'<div class="seclbl">apply same calls to</div>'
@@ -773,11 +681,11 @@ function rCalls(){
     var c=ES.calls[i],h=cH(c),tr=document.createElement('tr');
     tr.innerHTML='<td style="font-size:11px;color:#555;text-align:center">'+(i+1)+'</td>'
       +'<td><input class="ti'+(c.in?' ok':'')+'" data-ci="'+i+'" data-f="in" value="'+(c.in?f12(c.in):'')+'" placeholder="9am" autocomplete="off" spellcheck="false"></td>'
-      +'<td style="text-align:center;color:#555;font-size:14px;padding:0 3px">–</td>'
+      +'<td style="text-align:center;color:#555;font-size:14px;padding:0 3px">\u2013</td>'
       +'<td><input class="ti'+(c.out?' ok':'')+'" data-ci="'+i+'" data-f="out" value="'+(c.out?f12(c.out):'')+'" placeholder="1pm" autocomplete="off" spellcheck="false"></td>'
       +'<td><select class="ss" data-ci="'+i+'">'+CSHOWS.map(function(s){return'<option value="'+s+'"'+(c.show===s?' selected':'')+'>'+s+'</option>';}).join('')+'</select></td>'
       +'<td class="hdisp" id="hd'+i+'">'+(h>0?h.toFixed(1)+'h':'')+'</td>'
-      +'<td>'+(ES.calls.length>1?'<button class="rmbtn" data-i="'+i+'">×</button>':'')+'</td>';
+      +'<td>'+(ES.calls.length>1?'<button class="rmbtn" data-i="'+i+'">\u00d7</button>':'')+'</td>';
     tb.appendChild(tr);
   }
   tb.querySelectorAll('input.ti').forEach(function(inp){
@@ -830,8 +738,8 @@ function rFlags(){
   var oh=0;
   for(var x=0;x<7;x++){if(x!==ES.di){var cc=gC(wkOff,ES.pi,x);for(var j=0;j<cc.length;j++)oh+=cH(cc[j]);}}
   var proj=Math.round((dh+oh)*100)/100,flags=[];
-  if(proj>=OTH)flags.push('projected '+proj.toFixed(1)+'h this week — overtime');
-  else if(proj>=OTW)flags.push('projected '+proj.toFixed(1)+'h — approaching OT');
+  if(proj>=OTH)flags.push('projected '+proj.toFixed(1)+'h this week \u2014 overtime');
+  else if(proj>=OTW)flags.push('projected '+proj.toFixed(1)+'h \u2014 approaching OT');
   if(ES.di>0){
     var prev=gC(wkOff,ES.pi,ES.di-1);
     if(prev.length&&ES.calls.length){
@@ -848,11 +756,11 @@ function rFlags(){
     var cs2=ES.calls[si].show;
     if(cs2&&cs2!=='NC'&&cs2!=='OTHER'&&cs2!=='PAV'){
       if(CREW[ES.pi].shows.indexOf(cs2)<0)
-        swarn.push('call '+(si+1)+' tagged '+cs2+' — '+CREW[ES.pi].name+' not assigned to '+cs2);
+        swarn.push('call '+(si+1)+' tagged '+cs2+' \u2014 '+CREW[ES.pi].name+' not assigned to '+cs2);
     }
   }
   var allF=flags.concat(swarn);
-  if(allF.length){area.innerHTML='<div class="flags '+(proj>=OTH?'ot':'warn')+'">'+allF.join(' · ')+'</div>';}
+  if(allF.length){area.innerHTML='<div class="flags '+(proj>=OTH?'ot':'warn')+'">'+allF.join(' \u00b7 ')+'</div>';}
   else area.innerHTML='';
 }
 
